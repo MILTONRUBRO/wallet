@@ -21,6 +21,18 @@ public class User implements Serializable{
 	private String name;
 	private String email;
 	private String password;
+	
+	public User(String name, String email, String password) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+	
+	@Deprecated
+	public User() {
+		
+	}
 
 	public String getName() {
 		return name;
@@ -45,5 +57,7 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
 }
