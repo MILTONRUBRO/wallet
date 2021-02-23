@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.devmos.wallet.models.dto.UserDTO;
+
 @Entity
 public class User implements Serializable{
 	
@@ -58,6 +60,8 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
-	
+	public UserDTO convertEntityToDto(User user) {
+		return new UserDTO(user.name, user.getEmail(), user.getPassword());
+	}
 
 }
