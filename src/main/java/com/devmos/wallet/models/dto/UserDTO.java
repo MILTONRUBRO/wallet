@@ -18,8 +18,17 @@ public class UserDTO {
 	@Length(min=6, message="A senha deve conter no minimo 6 caracteres")
 	private String password;
 	
-	public UserDTO(String name, String email, String password) {
+	@Deprecated
+	public UserDTO() {
+		
+	}
+	
+	public UserDTO(Long id,
+			@Length(min = 3, max = 50, message = "O nome deve conter entre 3 e 50 caracteres") String name,
+			@Email(message = "Email invalido") String email,
+			@NotNull @Length(min = 6, message = "A senha deve conter no minimo 6 caracteres") String password) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
