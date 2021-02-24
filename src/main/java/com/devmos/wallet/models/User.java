@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.devmos.wallet.models.dto.UserDTO;
+import com.devmos.wallet.util.Bcrypt;
 
 @Entity
 public class User implements Serializable{
@@ -28,7 +29,7 @@ public class User implements Serializable{
 		super();
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.password = Bcrypt.getHash(password);
 	}
 	
 	@Deprecated
