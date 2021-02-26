@@ -2,6 +2,10 @@ package com.devmos.wallet.models.dto;
 
 import javax.validation.constraints.NotNull;
 
+import com.devmos.wallet.models.User;
+import com.devmos.wallet.models.UserWallet;
+import com.devmos.wallet.models.Wallet;
+
 public class UserWalletDTO {
 
 	private Long id;
@@ -32,6 +36,24 @@ public class UserWalletDTO {
 
 	public void setWallet(Long wallet) {
 		this.wallet = wallet;
+	}
+	
+	
+
+	public UserWalletDTO(@NotNull(message = "informe o id do usuario") Long user,
+			@NotNull(message = "informe o id da carteira") Long wallet) {
+		this.user = user;
+		this.wallet = wallet;
+	}
+
+	public UserWallet dtoToEntity() {
+		User user = new User();
+		Wallet wallet = new Wallet();
+		
+		user.setId(this.user);
+		wallet.setId(this.wallet);
+		
+		return new UserWallet(user, wallet);
 	}
 
 }

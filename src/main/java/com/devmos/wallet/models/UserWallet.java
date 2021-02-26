@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.devmos.wallet.models.dto.UserWalletDTO;
+
 @Entity
 public class UserWallet {
 	
@@ -20,6 +22,12 @@ public class UserWallet {
 	@JoinColumn(name = "wallet", referencedColumnName = "id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Wallet wallet;
+	
+	public UserWallet(User user, Wallet wallet) {
+		this.user = user;
+		this.wallet = wallet;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,5 +46,11 @@ public class UserWallet {
 	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;
 	}
+
+	public UserWalletDTO entityToDto(UserWallet userWallet) {
+		return new UserWalletDTO(userWallet.getUser().getId(), userWallet.getWallet().getId());
+	}
+	
+	
 
 }
