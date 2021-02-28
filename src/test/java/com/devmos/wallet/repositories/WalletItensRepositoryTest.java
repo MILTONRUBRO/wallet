@@ -1,6 +1,7 @@
 package com.devmos.wallet.repositories;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -37,6 +38,10 @@ public class WalletItensRepositoryTest {
 		WalletItem response = walletItensRepository.save(walletItem);
 		
 		assertNotNull(response);
+		assertEquals(response.getType(), TYPE);
+		assertEquals(response.getDescription(), DESCRIPTION);
+		assertEquals(response.getValue(), VALUE);
+
 	}
 
 }
