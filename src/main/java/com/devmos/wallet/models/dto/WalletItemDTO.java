@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class WalletItemDTO {
 
@@ -11,6 +12,7 @@ public class WalletItemDTO {
 	@NotNull(message = "Informe uma data")
 	private Date date;
 	@NotNull(message = "Informe um tipo")
+	@Pattern(regexp = "^(ENTRADA|SAIDA)$", message = "Para o tipo só são permitido os valores ENTRADA ou SAIDA")
 	private String type;
 	@NotNull(message = "Informe uma descricao")
 	private String description;
