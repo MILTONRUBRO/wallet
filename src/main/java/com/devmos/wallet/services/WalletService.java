@@ -5,5 +5,6 @@ import com.devmos.wallet.models.Wallet;
 public interface WalletService {
 	
 	Wallet save(Wallet wallet);
+	Wallet getWallet(Long id);
 
-}
+;}
