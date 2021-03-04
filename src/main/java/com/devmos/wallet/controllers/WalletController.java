@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,19 @@ public class WalletController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
+	@GetMapping("/{id}")
+	public  ResponseEntity<Response<WalletDTO>> get(@PathVariable Long id, BindingResult result){
+		Response<WalletDTO> response = new Response<>();
+		
+		if(result.hasErrors()) {
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		}
+		
+		Wallet wallet = walletService.getWallet(id);
+		response.setData(wallet.entityToDTO(wallet));
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
 	
 
 }
