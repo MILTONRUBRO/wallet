@@ -7,4 +7,4 @@ public interface WalletService {
 	Wallet save(Wallet wallet);
 	Wallet getWallet(Long id);
 
-;}
+}
