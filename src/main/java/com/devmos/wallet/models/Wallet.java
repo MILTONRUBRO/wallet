@@ -36,6 +36,17 @@ public class Wallet implements Serializable {
 		this.value = value;
 	}
 	
+	public Wallet(Long id,
+			@NotNull(message = "O nome não pode ser nulo") @Length(min = 3, message = "O nome deve ter no minimo 3 caracteres") String name,
+			@NotNull(message = "Insira um valor para a carteira") BigDecimal value) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
+
+
+
 	@Deprecated
 	public Wallet() {
 		

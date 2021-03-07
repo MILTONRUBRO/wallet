@@ -26,6 +26,12 @@ public class WalletDTO {
 	public WalletDTO() {
 		
 	}
+	
+	public WalletDTO(Long id, @NotNull @Length(min = 3) String name, @NotNull BigDecimal value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
 	public Long getId() {
 		return id;
