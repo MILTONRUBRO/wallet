@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -28,7 +29,7 @@ public class WalletControllerTest {
 	private static final Long ID = 1L;
 	private static final String NAME = "carteira";
 	private static final BigDecimal VALUE = new BigDecimal(50);
-	private static final String URL = "/wallet/";
+	private static final String URL = "/wallet";
 
 	@MockBean
 	private WalletService walletService;
@@ -40,10 +41,10 @@ public class WalletControllerTest {
 	public void testGetWallet() throws Exception {
 		BDDMockito.given(walletService.getWallet(Mockito.anyLong())).willReturn(getMockWallet());
 		
-		mvc.perform(MockMvcRequestBuilders.get(URL,ID))
+		mvc.perform(MockMvcRequestBuilders.get(URL + "/1")
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
 		.andExpect(MockMvcResultMatchers.status().isOk())
-		.andExpect(MockMvcResultMatchers.jsonPath("$.data.id").value(ID))
-		.andExpect(MockMvcResultMatchers.jsonPath("$.data.name").value(NAME))
 		.andExpect(MockMvcResultMatchers.jsonPath("$.data.value").value(VALUE));
 
 	}

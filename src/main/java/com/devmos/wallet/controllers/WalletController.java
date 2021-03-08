@@ -41,14 +41,9 @@ public class WalletController {
 	}
 	
 	@GetMapping("/{id}")
-	public  ResponseEntity<Response<WalletDTO>> get(@PathVariable Long id, BindingResult result){
+	public  ResponseEntity<Response<WalletDTO>> get(@PathVariable("id") Long id){
 		Response<WalletDTO> response = new Response<>();
-		
-		if(result.hasErrors()) {
-			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-		}
-		
+				
 		Wallet wallet = walletService.getWallet(id);
 		response.setData(wallet.entityToDTO(wallet));
 		return ResponseEntity.status(HttpStatus.OK).body(response);
