@@ -45,6 +45,7 @@ public class WalletControllerTest {
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 		.andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(MockMvcResultMatchers.jsonPath("$.data.name").value(NAME))
 		.andExpect(MockMvcResultMatchers.jsonPath("$.data.value").value(VALUE));
 
 	}
